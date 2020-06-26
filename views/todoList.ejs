@@ -5,19 +5,23 @@
   <body>
     <h1>I Have Important Things To Do</h1>
     <form action="/" method="POST">
-      <input type="text" name="content">
-      <button type="submit">Add Item</button>
+      <input type="text" name="title">
+      <button type="submit">Add Task</button>
     </form>
     <ul>
-      <li class="todo-list-item">
-      <div class="todo-list-item-name">Some Text</div>
-      <a href="" class="edit">
-        <span></span>
-      </a>
-      <a href="" class="remove">
-        <span></span>
-      </a>
-      </li>
+      <% if (tasks.length > 0) { %> 
+        <% for (let task of tasks) { %>
+          <li>
+          <div><%= task.title %></div>
+          <a href="" class="edit">
+            <span></span>
+          </a>
+          <a href="" class="remove">
+            <span></span>
+          </a>
+          </li>
+        <% } %>
+      <% } %> 
     </ul>
   </body>
 </html>
