@@ -7,15 +7,15 @@ const p = path.join(
 	"todolist.json"
 );
 
-const getTasksFromFile = (cb) => {
+const getTasksFromFile = cb => {
 	fs.readFile(p, (err, fileContent) => {
-		if (err) {
+    if (err) {
       cb([]);
     } else {
       cb(JSON.parse(fileContent));
     }
-	});
-}
+  });
+};
 
 module.exports = class Task {
 	constructor(t) {

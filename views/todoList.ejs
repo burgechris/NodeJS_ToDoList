@@ -13,11 +13,9 @@
         <% for (let task of tasks) { %>
           <li>
           <div><%= task.title %></div>
-          <a href="" class="edit">
-            <span></span>
+          <a href="/edit/<%= tasks._id %>" class="edit">
           </a>
-          <a href="" class="remove">
-            <span></span>
+          <a href="/remove/<%= tasks._id %>" class="remove">
           </a>
           </li>
         <% } %>
