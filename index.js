@@ -9,6 +9,7 @@ const Task = require("./models/task")
 
 const app = express();
 
+app.use("/static", express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 

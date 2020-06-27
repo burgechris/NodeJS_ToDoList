@@ -1,25 +1,35 @@
 <html>
   <head>
     <title>To Do List</title>
+    <link rel="stylesheet" href="/static/stylesheets/styles.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
-    <h1>I Have Important Things To Do</h1>
-    <form action="/" method="POST">
-      <input type="text" name="title">
-      <button type="submit">Add Task</button>
-    </form>
-    <ul>
-      <% if (tasks.length > 0) { %> 
-        <% for (let task of tasks) { %>
-          <li>
-          <div><%= task.title %></div>
-          <a href="/edit/<%= tasks._id %>" class="edit">
-          </a>
-          <a href="/remove/<%= tasks._id %>" class="remove">
-          </a>
-          </li>
-        <% } %>
-      <% } %> 
-    </ul>
+    <div class="todo-container">
+      <h2>I Have Important Things To Do</h2>
+      <div class="todo">
+        <form action="/" method="POST" class="todo-header">
+          <input type="text" name="title">
+          <button type="submit"><span class="fas fa-plus"></span></button>
+        </form>
+        <ul class="todo-list">
+          <% if (tasks.length > 0) { %> 
+            <% for (let task of tasks) { %>
+              <li class="todo-list-item">
+              <div class="todo-list-item-name"><%= task.title %></div>
+              <a href="/edit/<%= tasks._id %>" class="edit">
+                <span class="fas fa-edit"></span>
+              </a>
+              <a href="/remove/<%= tasks._id %>" class="remove">
+                <span class="fas fa-times"></span>
+              </a>
+              </li>
+            <% } %>
+          <% } %> 
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
