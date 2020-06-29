@@ -19,12 +19,15 @@
             <% for (let task of tasks) { %>
               <li class="todo-list-item">
               <div class="todo-list-item-name"><%= task.title %></div>
+              <div class="button-container">
               <a href="/edit/<%= task.id %>" class="edit">
                 <span class="fas fa-edit"></span>
               </a>
-              <a href="/remove/<%= task.id %>" class="remove">
-                <span class="fas fa-times"></span>
-              </a>
+              <form action="/remove/<%= task.id %>" method="POST">
+                <input type="hidden" value="<%= task.id %>" name="taskId">
+                <button class="cancel" type="submit">DELETE</button>
+              </form>
+              </div>
               </li>
             <% } %>
           <% } %> 

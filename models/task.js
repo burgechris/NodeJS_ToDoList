@@ -24,17 +24,17 @@ module.exports = class Task {
 	}
 
 	save() {
-		getTasksFromFile(tasks => {
+		getTasksFromFile((tasks) => {
 			if (this.id) {
-        const existingTaskIndex = tasks.findIndex(
-          task => task.id === this.id
-        );
-        const updatedTasks = [...tasks];
-        updatedTasks[existingTaskIndex] = this;
-        fs.writeFile(p, JSON.stringify(updatedTasks), (err) => {
+				const existingTaskIndex = tasks.findIndex(
+					task => task.id === this.id
+				);
+				const updatedTasks = [...tasks];
+				updatedTasks[existingTaskIndex] = this;
+				fs.writeFile(p, JSON.stringify(updatedTasks), (err) => {
 					console.log(err);
 				});
-      } else {
+			} else {
 				this.id = Math.random().toString();
 				tasks.push(this);
 				fs.writeFile(p, JSON.stringify(tasks), (err) => {
@@ -44,15 +44,25 @@ module.exports = class Task {
 		});
 	}
 
+	static deleteById(id) {
+		getTasksFromFile(tasks => {
+			const task = tasks.find(task => task.id === id);
+			const updatedTasks = tasks.filter(task => task.id !== id);
+			fs.writeFile(p, JSON.stringify(updatedTasks), (err) => {
+				console.log(err);
+			});
+		});
+	}
+
 	static fetchAll(cb) {
 		getTasksFromFile(cb);
 	}
 
 	static findById(id, cb) {
-    getTasksFromFile(tasks => {
-      const task = tasks.find(t => t.id === id);
-      cb(task);
-    });
-  }
+		getTasksFromFile((tasks) => {
+			const task = tasks.find((t) => t.id === id);
+			cb(task);
+		});
+	}
 };
 

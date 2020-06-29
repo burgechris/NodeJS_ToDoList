@@ -16,7 +16,7 @@
         </form>
          <ul class="todo-list">
             <li class="todo-list-item">
-              <form action="/edit/" method="POST">
+              <form class="edit-form" action="/edit/" method="POST">
                 <input type="text" value="<%= task.title %>" name="title">
                 <input type="hidden" value="<%= task.id %>" name="taskId">
                 <button type="submit">Confirm</button>

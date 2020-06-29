@@ -43,7 +43,7 @@ app.get("/edit/:taskId", (req, res) => {
     Task.findById(taskId, task=> {
       res.render("todoEdit", {
         task: task,
-        path: "/todoEdit/",
+        path: "/todoEdit",
         pageTitle: "Edit Task"
       });
     })
@@ -56,6 +56,13 @@ app.post("/edit/", (req, res) => {
 	updatedTask.save();
 	res.redirect("/");
 });
+
+//DELETE METHOD
+app.post("/remove/:taskId", (req, res) => {
+  const taskId = req.body.taskId;
+  Task.deleteById(taskId);
+  res.redirect("/");
+})
 
 app.listen(3000, () => console.log("Server Up and running"));
 
