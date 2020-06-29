@@ -10,8 +10,9 @@ The data is stored in a file on the server called todolist.json.
 
 ### Prerequisites
 
-_Latest version of node.js_
-_Your favorite IDE_
+-Latest version of node.js
+
+-Your favorite IDE
 
 ### Installing
 
