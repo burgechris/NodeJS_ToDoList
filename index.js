@@ -16,14 +16,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-//POST METHOD
+//CREATE METHOD
 app.post('/', (req,res) => {
-  const task = new Task( req.body.title );
+  const title = req.body.title
+  const task = new Task(null, title);
   task.save();
   res.redirect("/");
 });
 
-//GET METHOD
+//READ METHOD
 app.get("/", (req, res) => {
   Task.fetchAll((tasks) => {
 		res.render("todoList", {
@@ -36,7 +37,25 @@ app.get("/", (req, res) => {
 	});
 });
 
-// app.get("/", taskController.getAddTasks);
+//UPDATE METHOD
+app.get("/edit/:taskId", (req, res) => {
+    const taskId = req.params.taskId;
+    Task.findById(taskId, task=> {
+      res.render("todoEdit", {
+        task: task,
+        path: "/todoEdit/",
+        pageTitle: "Edit Task"
+      });
+    })
+  });
+
+app.post("/edit/", (req, res) => {
+	const taskId = req.body.taskId;
+	const updatedTitle = req.body.title;
+	const updatedTask = new Task(taskId, updatedTitle);
+	updatedTask.save();
+	res.redirect("/");
+});
 
 app.listen(3000, () => console.log("Server Up and running"));
 
